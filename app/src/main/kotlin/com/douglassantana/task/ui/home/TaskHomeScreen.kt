@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -23,12 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.douglassantana.task.R
-import com.douglassantana.task.domain.model.TaskModel
-import com.douglassantana.task.ui.widget.TaskText
+import com.douglassantana.domain.model.TaskModel
+import com.douglassantana.ui.R as CoreUi
+import com.douglassantana.ui.widget.TaskText
 import org.koin.androidx.compose.getViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaskHomeScreen(
     navigateToTaskRegistration: () -> Unit,
@@ -47,7 +45,7 @@ fun TaskHomeScreen(
                 content = {
                     Icon(
                         imageVector = Icons.Filled.Add,
-                        contentDescription = stringResource(id = R.string.app_name)
+                        contentDescription = stringResource(id = CoreUi.string.app_name)
                     )
                 }
             )
@@ -61,7 +59,7 @@ fun TaskHomeScreen(
             if (error)
                 Toast.makeText(
                     LocalContext.current,
-                    stringResource(id = R.string.default_error_title),
+                    stringResource(id = CoreUi.string.default_error_title),
                     Toast.LENGTH_LONG
                 ).show()
 
@@ -80,7 +78,7 @@ private fun TaskHomeBody(
     tasks: List<TaskModel>
 ) {
     Column {
-        TaskText(text = stringResource(id = R.string.my_task_title))
+        TaskText(text = stringResource(id = CoreUi.string.my_task_title))
 
         LazyColumn(modifier = modifier) {
             items(items = tasks) { item ->
@@ -103,7 +101,7 @@ private fun TaskHomeEmpty(
             verticalArrangement = Arrangement.Center
         ) {
             TaskText(
-                text = stringResource(id = R.string.my_task_empty),
+                text = stringResource(id = CoreUi.string.my_task_empty),
                 textAlign = TextAlign.Center
             )
         }

@@ -2,9 +2,9 @@ package com.douglassantana.task.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.douglassantana.domain.model.TaskModel
+import com.douglassantana.domain.useCase.GetTaskUseCase
 import com.douglassantana.task.core.TaskState
-import com.douglassantana.task.domain.model.TaskModel
-import com.douglassantana.task.domain.useCase.GetTaskUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

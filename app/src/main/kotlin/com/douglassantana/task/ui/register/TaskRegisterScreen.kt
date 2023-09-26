@@ -27,8 +27,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import com.douglassantana.task.R
-import com.douglassantana.task.ui.widget.TaskToolbar
+import com.douglassantana.ui.R as CoreUi
+import com.douglassantana.ui.widget.TaskToolbar
 import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,7 +59,7 @@ fun TaskRegisterScreen(
             if (error)
                 Toast.makeText(
                     LocalContext.current,
-                    stringResource(id = R.string.default_error_title),
+                    stringResource(id = CoreUi.string.default_error_title),
                     Toast.LENGTH_LONG
                 ).show()
 
@@ -119,14 +119,14 @@ private fun TaskRegisterInput(
 ) {
     OutlinedTextField(
         modifier = Modifier
-            .padding(all = dimensionResource(id = R.dimen.default_margin))
-            .width(dimensionResource(id = R.dimen.button_with))
+            .padding(all = dimensionResource(id = CoreUi.dimen.default_margin))
+            .width(dimensionResource(id = CoreUi.dimen.button_with))
             .fillMaxWidth(),
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin)),
+        shape = RoundedCornerShape(dimensionResource(id = CoreUi.dimen.default_margin)),
         value = value,
         onValueChange = onValueChange,
         label = {
-            Text(text = stringResource(id = R.string.task_register_name_field))
+            Text(text = stringResource(id = CoreUi.string.task_register_name_field))
         }
     )
 }
@@ -139,15 +139,15 @@ private fun TaskButtonRegister(
 ) {
     Button(
         modifier = modifier
-            .padding(all = dimensionResource(id = R.dimen.default_margin))
-            .width(dimensionResource(id = R.dimen.button_with))
-            .height(dimensionResource(id = R.dimen.button_height)),
-        shape = RoundedCornerShape(dimensionResource(id = R.dimen.default_margin)),
+            .padding(all = dimensionResource(id = CoreUi.dimen.default_margin))
+            .width(dimensionResource(id = CoreUi.dimen.button_with))
+            .height(dimensionResource(id = CoreUi.dimen.button_height)),
+        shape = RoundedCornerShape(dimensionResource(id = CoreUi.dimen.default_margin)),
         onClick = onSaveClick,
         enabled = isEnableButton
     ) {
         Text(
-            text = stringResource(id = R.string.task_register_button_title),
+            text = stringResource(id = CoreUi.string.task_register_button_title),
             textAlign = TextAlign.Center
         )
     }

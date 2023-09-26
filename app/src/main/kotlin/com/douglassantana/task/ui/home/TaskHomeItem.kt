@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import com.douglassantana.task.R
+import com.douglassantana.ui.R as CoreUi
 
 @Composable
 fun TaskHomeItem(
@@ -20,18 +20,18 @@ fun TaskHomeItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(
-                start = dimensionResource(id = R.dimen.default_margin),
-                end = dimensionResource(id = R.dimen.default_margin),
-                top = dimensionResource(id = R.dimen.default_margin)
+                start = dimensionResource(id = CoreUi.dimen.default_margin),
+                end = dimensionResource(id = CoreUi.dimen.default_margin),
+                top = dimensionResource(id = CoreUi.dimen.default_margin)
             ),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = dimensionResource(id = R.dimen.default_elevation_card)
+            defaultElevation = dimensionResource(id = CoreUi.dimen.default_elevation_card)
         )
     ) {
         Text(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(all = dimensionResource(id = R.dimen.default_margin)),
+                .padding(all = dimensionResource(id = CoreUi.dimen.default_margin)),
             style = MaterialTheme.typography.titleMedium,
             text = taskName
         )

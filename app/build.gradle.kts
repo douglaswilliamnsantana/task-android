@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
 }
 
@@ -56,6 +56,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:local"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:ui"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)

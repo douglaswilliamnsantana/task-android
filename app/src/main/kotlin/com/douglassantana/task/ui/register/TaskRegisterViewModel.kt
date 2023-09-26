@@ -3,8 +3,8 @@ package com.douglassantana.task.ui.register
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.douglassantana.task.domain.model.TaskModel
-import com.douglassantana.task.domain.useCase.GetTaskRegisterUseCase
+import com.douglassantana.domain.model.TaskModel
+import com.douglassantana.domain.useCase.GetTaskRegisterUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

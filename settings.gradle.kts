@@ -20,3 +20,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "task-android"
 include(":app")
+include(":core:domain")
+include(":core:common")
+include(":core:ui")
+include(":data:local")

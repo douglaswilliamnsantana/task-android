@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.douglassantana.task.navigation.TaskNavHost
-import com.douglassantana.task.ui.theme.TaskTheme
+import com.douglassantana.ui.theme.TaskTheme
 
 class MainActivity : ComponentActivity() {
 
