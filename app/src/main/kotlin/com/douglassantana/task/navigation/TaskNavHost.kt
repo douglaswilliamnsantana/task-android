@@ -5,10 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.douglassantana.task.ui.home.TaskHomeDestination
-import com.douglassantana.task.ui.home.TaskHomeScreen
-import com.douglassantana.task.ui.register.TaskRegisterDestination
-import com.douglassantana.task.ui.register.TaskRegisterScreen
+import com.douglassantana.home.ui.TaskHomeDestination
+import com.douglassantana.home.ui.TaskHomeScreen
+import com.douglassantana.register.ui.TaskRegisterDestination
+import com.douglassantana.register.ui.TaskRegisterScreen
 
 @Composable
 fun TaskNavHost(
