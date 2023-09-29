@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">App Task</string>
 
-    <string name="default_error_title">Não foi possível concluir a solicitação</string>
+    <string name="default_error_title">Unable to complete request</string>
 
     <string name="my_task_title">My Tasks</string>
     <string name="my_task_empty">You have no tasks registered</string>
