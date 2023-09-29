@@ -1,6 +1,6 @@
 package com.douglassantana.common
 
-sealed class TaskState{
+sealed class TaskState {
     object NotStarted : TaskState()
     object InProgress : TaskState()
     object Complete : TaskState()

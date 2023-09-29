@@ -33,7 +33,6 @@ fun TaskHomeScreen(
     modifier: Modifier = Modifier,
     viewModel: TaskHomeViewModel = getViewModel()
 ) {
-    viewModel.getAllTasks()
 
     val uiState by viewModel.uiState.collectAsState()
     val error by viewModel.error.collectAsState()

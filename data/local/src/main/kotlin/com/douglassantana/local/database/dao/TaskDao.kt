@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.douglassantana.local.database.model.TaskEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
@@ -13,5 +14,5 @@ interface TaskDao {
     suspend fun insert(task: TaskEntity)
 
     @Query("SELECT * from tasks ORDER BY name ASC")
-    fun getAllTasks(): List<TaskEntity>
+    fun getAllTasks(): Flow<List<TaskEntity>>
 }
