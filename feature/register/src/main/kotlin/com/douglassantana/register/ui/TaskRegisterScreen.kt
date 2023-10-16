@@ -31,9 +31,9 @@ import com.douglassantana.ui.R as CoreUi
 import com.douglassantana.ui.widget.TaskToolbar
 import org.koin.androidx.compose.getViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TaskRegisterScreen(
+internal fun TaskRegisterRoute(
+    modifier: Modifier = Modifier,
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
     canNavigateBack: Boolean = true,
@@ -44,6 +44,30 @@ fun TaskRegisterScreen(
     val isEnableButton by taskRegisterViewModel.isEnableButton.collectAsState()
     val error by taskRegisterViewModel.error.collectAsState()
 
+    TaskRegisterScreen(
+        modifier = modifier,
+        navigateBack = navigateBack,
+        onNavigateUp = onNavigateUp,
+        canNavigateBack = canNavigateBack,
+        name = name,
+        isEnableButton = isEnableButton,
+        error = error,
+        taskRegisterViewModel = taskRegisterViewModel
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun TaskRegisterScreen(
+    modifier: Modifier,
+    navigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
+    canNavigateBack: Boolean,
+    name: TextFieldValue,
+    isEnableButton: Boolean,
+    error: Boolean,
+    taskRegisterViewModel: TaskRegisterViewModel
+) {
     Scaffold(
         topBar = {
             TaskToolbar(
@@ -54,7 +78,6 @@ fun TaskRegisterScreen(
         }
     ) { paddingValues ->
         Surface {
-
             if (error)
                 Toast.makeText(
                     LocalContext.current,
@@ -63,6 +86,7 @@ fun TaskRegisterScreen(
                 ).show()
 
             TaskRegisterBody(
+                modifier = modifier,
                 paddingValues = paddingValues,
                 isEnableButton = isEnableButton,
                 value = name,

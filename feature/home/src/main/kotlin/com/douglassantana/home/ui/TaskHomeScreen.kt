@@ -28,15 +28,29 @@ import com.douglassantana.ui.widget.TaskText
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun TaskHomeScreen(
-    navigateToTaskRegistration: () -> Unit,
+internal fun TaskHomeRoute(
     modifier: Modifier = Modifier,
+    navigateToTaskRegistration: () -> Unit,
     viewModel: TaskHomeViewModel = getViewModel()
 ) {
-
     val uiState by viewModel.uiState.collectAsState()
     val error by viewModel.error.collectAsState()
 
+    TaskHomeScreen(
+        modifier = modifier,
+        navigateToTaskRegistration = navigateToTaskRegistration,
+        uiState = uiState,
+        error = error
+    )
+}
+
+@Composable
+internal fun TaskHomeScreen(
+    modifier: Modifier = Modifier,
+    navigateToTaskRegistration: () -> Unit,
+    uiState: TaskHomeScreenState,
+    error: Boolean
+) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(

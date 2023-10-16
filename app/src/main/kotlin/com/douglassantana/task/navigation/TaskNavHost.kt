@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import com.douglassantana.home.navigation.taskHomeScreen
 import com.douglassantana.home.ui.TaskHomeDestination
-import com.douglassantana.home.ui.TaskHomeScreen
+import com.douglassantana.register.navigation.navigateToRegister
+import com.douglassantana.register.navigation.taskRegisterScreen
 import com.douglassantana.register.ui.TaskRegisterDestination
-import com.douglassantana.register.ui.TaskRegisterScreen
 
 @Composable
 fun TaskNavHost(
@@ -20,19 +20,17 @@ fun TaskNavHost(
         startDestination = TaskHomeDestination.route,
         modifier = modifier
     ) {
-        composable(route = TaskHomeDestination.route) {
-            TaskHomeScreen(
-                navigateToTaskRegistration = {
-                    navController.navigate(TaskRegisterDestination.route)
-                }
-            )
-        }
+        taskHomeScreen(
+            navigateToTaskRegistration = {
+                navController.navigateToRegister(
+                    destination = TaskRegisterDestination.route
+                )
+            }
+        )
 
-        composable(route = TaskRegisterDestination.route) {
-            TaskRegisterScreen(
-                navigateBack = { navController.popBackStack() },
-                onNavigateUp = { navController.navigateUp() }
-            )
-        }
+        taskRegisterScreen(
+            navigateBack = { navController.popBackStack() },
+            onNavigateUp = { navController.navigateUp() }
+        )
     }
 }
