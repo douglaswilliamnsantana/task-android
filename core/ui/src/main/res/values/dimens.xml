@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_margin">24dp</dimen>
+    <dimen name="default_medium_margin">16dp</dimen>
+    <dimen name="default_medium">8dp</dimen>
+
     <dimen name="default_elevation_card">2dp</dimen>
 
     <dimen name="button_height">54dp</dimen>

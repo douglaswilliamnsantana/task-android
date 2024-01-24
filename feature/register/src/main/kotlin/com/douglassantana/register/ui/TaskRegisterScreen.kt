@@ -1,6 +1,5 @@
 package com.douglassantana.register.ui
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,9 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -22,13 +19,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
+import com.douglassantana.register.navigation.TaskRegisterDestination
+import com.douglassantana.ui.widget.bottomsheet.WidgetBottomSheet
+import com.douglassantana.ui.widget.button.WidgetButton
 import com.douglassantana.ui.R as CoreUi
-import com.douglassantana.ui.widget.TaskToolbar
+import com.douglassantana.ui.widget.header.WidgetHeader
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -70,7 +68,7 @@ internal fun TaskRegisterScreen(
 ) {
     Scaffold(
         topBar = {
-            TaskToolbar(
+            WidgetHeader(
                 title = stringResource(TaskRegisterDestination.titleRes),
                 canNavigateBack = canNavigateBack,
                 navigateUp = onNavigateUp
@@ -79,11 +77,13 @@ internal fun TaskRegisterScreen(
     ) { paddingValues ->
         Surface {
             if (error)
-                Toast.makeText(
-                    LocalContext.current,
-                    stringResource(id = CoreUi.string.default_error_title),
-                    Toast.LENGTH_LONG
-                ).show()
+                WidgetBottomSheet(
+                    title = stringResource(id = CoreUi.string.task_default_error_title),
+                    buttonTitle = stringResource(id = CoreUi.string.default_action_title_finish),
+                    subTitle = stringResource(id = CoreUi.string.task_default_error_description),
+                    onDismiss = { navigateBack() },
+                    onButtonAction = { navigateBack() }
+                )
 
             TaskRegisterBody(
                 modifier = modifier,
@@ -123,12 +123,20 @@ private fun TaskRegisterBody(
                 onValueChange = onValueChange
             )
 
-            TaskButtonRegister(
-                onSaveClick = {
+            WidgetButton(
+                modifier = Modifier
+                    .padding(
+                        start = dimensionResource(id = CoreUi.dimen.default_margin),
+                        end = dimensionResource(id = CoreUi.dimen.default_margin)
+                    )
+                    .height(dimensionResource(id = CoreUi.dimen.button_height)),
+                title = stringResource(id = CoreUi.string.task_register_button_title),
+                shape = RoundedCornerShape(dimensionResource(id = CoreUi.dimen.default_medium_margin)),
+                enabled = isEnableButton,
+                onAction = {
                     onSaveClick()
                     navigateBack()
-                },
-                isEnableButton = isEnableButton
+                }
             )
         }
     }
@@ -142,35 +150,12 @@ private fun TaskRegisterInput(
     OutlinedTextField(
         modifier = Modifier
             .padding(all = dimensionResource(id = CoreUi.dimen.default_margin))
-            .width(dimensionResource(id = CoreUi.dimen.button_with))
             .fillMaxWidth(),
-        shape = RoundedCornerShape(dimensionResource(id = CoreUi.dimen.default_margin)),
+        shape = RoundedCornerShape(dimensionResource(id = CoreUi.dimen.default_medium_margin)),
         value = value,
         onValueChange = onValueChange,
         label = {
             Text(text = stringResource(id = CoreUi.string.task_register_name_field))
         }
     )
-}
-
-@Composable
-private fun TaskButtonRegister(
-    modifier: Modifier = Modifier,
-    onSaveClick: () -> Unit,
-    isEnableButton: Boolean
-) {
-    Button(
-        modifier = modifier
-            .padding(all = dimensionResource(id = CoreUi.dimen.default_margin))
-            .width(dimensionResource(id = CoreUi.dimen.button_with))
-            .height(dimensionResource(id = CoreUi.dimen.button_height)),
-        shape = RoundedCornerShape(dimensionResource(id = CoreUi.dimen.default_margin)),
-        onClick = onSaveClick,
-        enabled = isEnableButton
-    ) {
-        Text(
-            text = stringResource(id = CoreUi.string.task_register_button_title),
-            textAlign = TextAlign.Center
-        )
-    }
 }

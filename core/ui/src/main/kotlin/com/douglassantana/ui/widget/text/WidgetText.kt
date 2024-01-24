@@ -1,4 +1,4 @@
-package com.douglassantana.ui.widget
+package com.douglassantana.ui.widget.text
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.douglassantana.ui.R
 
 @Composable
-fun TaskText(
+fun WidgetText(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign? = TextAlign.Start

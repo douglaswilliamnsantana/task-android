@@ -5,10 +5,13 @@ plugins {
 
 android {
     namespace = "com.douglassantana.ui"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
+        minSdk = 24
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildFeatures {
@@ -44,4 +47,5 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    debugImplementation(libs.androidx.ui.tooling)
 }

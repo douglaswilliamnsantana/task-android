@@ -1,9 +1,9 @@
-package com.douglassantana.home.ui
+package com.douglassantana.register.navigation
 
 import com.douglassantana.common.NavigationDestination
 import com.douglassantana.ui.R as CoreUi
 
-object TaskHomeDestination : NavigationDestination {
-    override val route = "task_registration"
+object TaskRegisterDestination : NavigationDestination {
+    override val route = "home"
     override val titleRes = CoreUi.string.app_name
 }

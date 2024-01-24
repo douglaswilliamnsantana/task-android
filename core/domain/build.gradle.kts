@@ -5,10 +5,13 @@ plugins {
 
 android {
     namespace = "com.douglassantana.domain"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
+        minSdk = 24
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     compileOptions {
@@ -23,6 +26,7 @@ android {
 
 dependencies {
     implementation(project(":data:local"))
+    implementation(project(":core:common"))
 
     implementation(libs.androidx.core.ktx)
 

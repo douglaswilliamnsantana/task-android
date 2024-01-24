@@ -1,5 +1,6 @@
 package com.douglassantana.domain.useCase
 
+import com.douglassantana.common.UseCase
 import com.douglassantana.domain.mapper.toModel
 import com.douglassantana.domain.model.TaskModel
 import com.douglassantana.local.respository.TaskLocalRepository

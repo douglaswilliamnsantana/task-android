@@ -1,4 +1,4 @@
-package com.douglassantana.domain.useCase
+package com.douglassantana.common
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -2,6 +2,15 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="WidgetBottomSheetPreview">
+        <State />
+      </entry>
+      <entry key="WidgetButtonPreview">
+        <State />
+      </entry>
+      <entry key="WidgetCardItemPreview">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
