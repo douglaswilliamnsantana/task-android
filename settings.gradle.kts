@@ -1,6 +1,12 @@
 pluginManagement {
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -11,19 +17,14 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
-    versionCatalogs {
-        create("testLibs") {
-            from(files("gradle/libs.versions.toml"))
-        }
-    }
 }
 
 rootProject.name = "task-android"
 include(":app")
-include(":core:domain")
 include(":core:common")
-include(":core:ui")
-include(":data:local")
+include(":core:designsystem")
 include(":feature")
 include(":feature:home")
 include(":feature:register")
+include(":core:database")
+include(":core:data")

@@ -3,42 +3,47 @@ package com.douglassantana.register.ui
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.douglassantana.domain.model.TaskModel
-import com.douglassantana.domain.useCase.GetTaskRegisterUseCase
+import com.douglassantana.common.isNotNullOrEmpty
+import com.douglassantana.data.respository.TaskLocalRepository
+import com.douglassantana.database.model.TaskEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TaskRegisterViewModel(
-    private val useCase: GetTaskRegisterUseCase
+@HiltViewModel
+class TaskRegisterViewModel @Inject constructor(
+    private val repository: TaskLocalRepository
 ) : ViewModel() {
 
-    private val _error = MutableStateFlow(false)
-    val error: StateFlow<Boolean> = _error.asStateFlow()
+    private val _uiState = MutableStateFlow(TaskRegisterUiState())
+    val uiState: StateFlow<TaskRegisterUiState> = _uiState.asStateFlow()
 
-    private val _name = MutableStateFlow(TextFieldValue())
-    val name = _name.asStateFlow()
-
-    private val _isEnableButton = MutableStateFlow(false)
-    val isEnableButton = _isEnableButton.asStateFlow()
-
-    private val task = TaskModel()
-
-    fun onSave() {
+    fun createTask() =
         viewModelScope.launch {
-            try {
-                useCase.invoke(params = task)
-            } catch (e: Exception) {
-                _error.update { true }
-            }
+            repository.insert(
+                task = TaskEntity(
+                    title = uiState.value.taskTitleText.text,
+                    description = uiState.value.taskDescriptionText.text
+                )
+            )
+        }
+
+    fun updateTaskTitle(taskTitleText: TextFieldValue) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                taskTitleText = taskTitleText,
+                isEnableButton = taskTitleText.text.isNotNullOrEmpty()
+            )
         }
     }
 
-    fun onChangeName(value: TextFieldValue) {
-        _isEnableButton.update { value.text.isNotEmpty() }
-        this.task.name = value.text
-        _name.update { value }
+    fun updateTaskDescription(taskDescriptionText: TextFieldValue) {
+        _uiState.update { currentState ->
+            currentState.copy(taskDescriptionText = taskDescriptionText)
+        }
     }
 }

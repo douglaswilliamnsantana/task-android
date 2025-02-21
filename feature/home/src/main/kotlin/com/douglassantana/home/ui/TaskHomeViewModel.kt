@@ -1,56 +1,46 @@
 package com.douglassantana.home.ui
 
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.douglassantana.common.TaskState
-import com.douglassantana.domain.mapper.toModel
-import com.douglassantana.domain.model.TaskModel
-import com.douglassantana.domain.useCase.GetTaskUseCase
+import com.douglassantana.common.ViewerUiResponse
+import com.douglassantana.data.respository.TaskLocalRepository
+import com.douglassantana.database.model.TaskEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TaskHomeViewModel(
-    private val useCase: GetTaskUseCase
-) : ViewModel() {
+@HiltViewModel
+class TaskHomeViewModel @Inject constructor(
+    private val repository: TaskLocalRepository
+) : ViewModel(), DefaultLifecycleObserver {
 
-    private val _error = MutableStateFlow(false)
-    val error: StateFlow<Boolean> = _error.asStateFlow()
+    private val _uiState = MutableStateFlow(TaskHomeUiState())
+    val uiState: StateFlow<TaskHomeUiState> = _uiState.asStateFlow()
 
-    val uiState: StateFlow<TaskHomeScreenState> =
-        useCase.invoke()
-            .map {
-                updateScreenStateSuccess(it.toModel())
-            }
-            .catch {
-                updateScreenStateError(it)
-            }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = TIMEOUT_MILLIS),
-                initialValue = TaskHomeScreenState()
-            )
-
-
-    private fun updateScreenStateSuccess(taskModel: List<TaskModel>) =
-        TaskHomeScreenState(
-            taskState = TaskState.Complete,
-            taskList = taskModel
-        )
-
-    private fun updateScreenStateError(exception: Throwable) {
-        _error.update { true }
-        TaskHomeScreenState(
-            taskState = TaskState.Error(exception)
-        )
+    override fun onCreate(owner: LifecycleOwner) {
+        getTasks()
     }
 
-    companion object {
-        private const val TIMEOUT_MILLIS = 5_000L
+    private fun getTasks() =
+        viewModelScope.launch {
+            repository.getAllTasks()
+                .collect { tasks ->
+                    updateScreenStateSuccess(taskModel = tasks)
+                }
+        }
+
+    private fun updateScreenStateSuccess(taskModel: List<TaskEntity>) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                taskState = ViewerUiResponse.Success(taskModel),
+                taskList = taskModel
+            )
+        }
     }
 }

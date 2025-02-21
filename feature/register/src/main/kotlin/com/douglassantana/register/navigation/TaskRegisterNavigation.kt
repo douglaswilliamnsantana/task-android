@@ -5,22 +5,19 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.douglassantana.register.ui.TaskRegisterRoute
+import kotlinx.serialization.Serializable
 
-fun NavController.navigateToRegister(
-    destination: String,
+@Serializable
+data object RegisterRoute
+
+fun NavController.navigateToTaskRegister(
     navOptions: NavOptions? = null
-) {
-    this.navigate(destination, navOptions)
-}
+) = navigate(RegisterRoute, navOptions)
 
 fun NavGraphBuilder.taskRegisterScreen(
-    navigateBack: () -> Unit,
-    onNavigateUp: () -> Unit,
-) {
-    composable(route = TaskRegisterDestination.route) {
-        TaskRegisterRoute(
-            navigateBack = navigateBack,
-            onNavigateUp = onNavigateUp
-        )
-    }
+    onNavigateHome: () -> Unit
+) = composable<RegisterRoute> {
+    TaskRegisterRoute(
+        onNavigateHome = onNavigateHome
+    )
 }

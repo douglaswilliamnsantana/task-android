@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_xxmargin">8dp</dimen>
+    <dimen name="default_xxxmargin">4dp</dimen>
+    <dimen name="default_margin_xxsmall">2dp</dimen>
+
+    <dimen name="default_radius">8dp</dimen>
+
+    <dimen name="button_height">54dp</dimen>
+    <dimen name="button_with">250dp</dimen>
+    <dimen name="default_height">52dp</dimen>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">App Task</string>
+
+    <string name="hello_title">Hello!</string>
+    <string name="manage_title">Manage your tasks</string>
+    <string name="register_title">Create your tasks</string>
+
+    <string name="my_task_empty">You have no tasks registered</string>
+
+    <string name="task_title_field">Title</string>
+    <string name="task_description_field">Description</string>
+    <string name="task_description_button_title">Create</string>
+</resources>

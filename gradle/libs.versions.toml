@@ -1,48 +1,51 @@
 [versions]
-agp = "8.2.1"
-kotlin = "1.9.22"
-activity-compose = "1.8.2"
-androidx-junit = "1.1.5"
-core-ktx = "1.12.0"
-espresso-core = "3.5.1"
-junit = "4.13.2"
-koin-androidx-compose = "3.4.3"
-lifecycle-runtime-ktx = "2.7.0"
-navigation-compose = "2.7.6"
+agp = "8.7.3"
+kotlin = "2.1.0"
+activity-compose = "1.10.0"
+core-ktx = "1.15.0"
+lifecycle-runtime-ktx = "2.8.7"
+navigation-compose = "2.8.7"
 room-runtime = "2.6.1"
-androidxComposeBom = "2023.10.01"
-ksp = "1.9.10-1.0.13"
-appcompat = "1.6.1"
-material = "1.11.0"
-uiTooling = "1.5.4"
+androidxComposeBom = "2025.02.00"
+ksp = "2.1.0-1.0.29"
+appcompat = "1.7.0"
+uiTooling = "1.7.8"
+hiltAndroid = "2.54"
+androidxHiltNavigationCompose = "1.2.0"
+kotlinxDatetime = "0.6.1"
+kotlinxSerializationJson = "1.8.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
-androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
-androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle-runtime-ktx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-runtime" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room-runtime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-runtime" }
-junit = { module = "junit:junit", version.ref = "junit" }
-koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-androidx-compose" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltAndroid" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 
-[bundles]
-
+# Plugins defined by this project
+task-ksp = { id = "com.google.devtools.ksp" }
+task-hilt = { id = "com.google.dagger.hilt.android" }
