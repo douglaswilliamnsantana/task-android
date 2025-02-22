@@ -30,7 +30,7 @@ Finally open the task-android/ directory in Android Studio.
 
 ## License
 
-> Copyright 2024 Google, Inc. Licensed to the Apache Software Foundation
+> Copyright 2024, Inc. Licensed to the Apache Software Foundation
 > (ASF) under one or more contributor license agreements. See the NOTICE
 > file distributed with this work for additional information regarding
 > copyright ownership. The ASF licenses this file to you under the
