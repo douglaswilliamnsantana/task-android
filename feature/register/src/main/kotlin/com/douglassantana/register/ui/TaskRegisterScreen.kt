@@ -9,6 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -31,16 +33,15 @@ fun TaskRegisterRoute(
     val viewModel: TaskRegisterViewModel = hiltViewModel()
 
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
+    val onNavigateHomeCallback by rememberUpdatedState(newValue = onNavigateHome)
 
     TaskRegisterScreen(
         modifier = modifier,
         uiState = uiState,
         onValueChangeTaskTitle = viewModel::updateTaskTitle,
         onValueChangeTaskDescription = viewModel::updateTaskDescription,
-        onCreateTask = {
-            viewModel.createTask()
-            onNavigateHome.invoke()
-        }
+        onNavigateHome = onNavigateHomeCallback,
+        taskRegister = viewModel::createTask
     )
 }
 
@@ -50,7 +51,8 @@ private fun TaskRegisterScreen(
     uiState: TaskRegisterUiState,
     onValueChangeTaskTitle: (TextFieldValue) -> Unit,
     onValueChangeTaskDescription: (TextFieldValue) -> Unit,
-    onCreateTask: () -> Unit
+    onNavigateHome: () -> Unit,
+    taskRegister: () -> Unit,
 ) = Scaffold { paddingValues ->
     Column(
         modifier = modifier
@@ -85,7 +87,10 @@ private fun TaskRegisterScreen(
             TaskButton(
                 enabled = uiState.isEnableButton,
                 title = stringResource(id = DesignSystemUi.string.task_description_button_title),
-                onClick = onCreateTask
+                onClick = {
+                    taskRegister.invoke()
+                    onNavigateHome.invoke()
+                }
             )
         }
     }
@@ -127,7 +132,8 @@ private fun TaskRegisterPreview() {
             uiState = TaskRegisterUiState(),
             onValueChangeTaskTitle = {},
             onValueChangeTaskDescription = {},
-            onCreateTask = {}
+            onNavigateHome = {},
+            taskRegister = {}
         )
     }
 }
