@@ -10,10 +10,12 @@ The development of the application is intended to practice studies and share kno
 
 ## Screens
 
-![Home]<img src="screenshots/screen_home.png" width="309">
-![Register]<img src="screenshots/screen_register.png" width="309">
-![Register]<img src="screenshots/screen_register2.png" width="309">
-![Home]<img src="screenshots/screen_home2.png" width="309">
+<p>
+  <img src="screenshots/screen_home.png" width="309">
+  <img src="screenshots/screen_register.png" width="309">
+  <img src="screenshots/screen_register2.png" width="309">
+  <img src="screenshots/screen_home2.png" width="309">
+</p>
 
 ## Architecture
 
