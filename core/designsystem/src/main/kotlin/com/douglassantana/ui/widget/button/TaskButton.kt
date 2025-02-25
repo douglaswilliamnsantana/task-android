@@ -41,14 +41,12 @@ fun TaskButton(
     ) {
 
         Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = dimensionResource(id = R.dimen.default_xxmargin)),
+            modifier = Modifier.weight(1f),
             horizontalAlignment = Alignment.Start
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.fillMaxWidth()
             )
         }
