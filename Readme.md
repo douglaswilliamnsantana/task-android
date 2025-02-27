@@ -8,13 +8,17 @@ The development of the application is intended to practice studies and share kno
 - `List Tasks`
 - `Create Tasks`
 
+## DeepLink
+
+- `adb shell am start -W -a android.intent.action.VIEW -d "task://register"`
+
 ## Screens
 
 <p>
-  <img src="screenshots/screen_home.png" width="309">
-  <img src="screenshots/screen_register.png" width="309">
-  <img src="screenshots/screen_register2.png" width="309">
-  <img src="screenshots/screen_home2.png" width="309">
+  <img src="screenshots/screen_home.png" width="230">
+  <img src="screenshots/screen_register.png" width="230">
+  <img src="screenshots/screen_register2.png" width="230">
+  <img src="screenshots/screen_home2.png" width="230">
 </p>
 
 ## Architecture
