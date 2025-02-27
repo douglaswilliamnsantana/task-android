@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application android:allowBackup="true">
+        <activity
+            android:name=".ui.TaskRegisterActivity"
+            android:exported="true"
+            android:label="@string/app_name" >
+
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:scheme="task"
+                    android:host="register" />
+            </intent-filter>
+
+        </activity>
+    </application>
+
+</manifest>
